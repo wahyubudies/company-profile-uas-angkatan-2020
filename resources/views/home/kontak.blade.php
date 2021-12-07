@@ -9,7 +9,7 @@ $bg   = DB::table('heading')->where('halaman','Kontak')->orderBy('id_heading','D
 </section>
 <!--Inner Header End--> 
 <!--Contact Start-->
-<section class="contact-page wf100 p50">
+<section class="contact-page wf100 p50">   
    <div class="container contact-info">
       <div class="row">
          <!--Contact Info Start-->
@@ -40,34 +40,59 @@ $bg   = DB::table('heading')->where('halaman','Kontak')->orderBy('id_heading','D
    <div class="container">
       <div class="row">
          <div class="col-md-6">
-            <div class="contact-form">
-               <ul class="cform">
-                  <li class="half pr-15">
-                     <input type="text" class="form-control" placeholder="Full Name">
-                  </li>
-                  <li class="half pl-15">
-                     <input type="text" class="form-control" placeholder="Email">
-                  </li>
-                  <li class="half pr-15">
-                     <input type="text" class="form-control" placeholder="Contact">
-                  </li>
-                  <li class="half pl-15">
-                     <input type="text" class="form-control" placeholder="Subject">
-                  </li>
-                  <li class="full">
-                     <textarea class="textarea-control" placeholder="Message"></textarea>
-                  </li>
-                  <li class="full">
+            @if( session()->has('message') )
+               <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  {{ session()->get('message') }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+            @endif
+            <form action="{{ route('inbox') }}" method="post">
+               @csrf
+               <div class="row">
+                  <div class="col-12 col-md-6 mb-4">
+                     <input type="text" class="form-control @error('full_name') is-invalid @enderror" placeholder="Full Name" name="full_name" value="{{ old('full_name') }}">
+                     @error('full_name')
+                        <span class="text-danger">{{ $message }}</span>
+                     @enderror
+                  </div>
+                  <div class="col-12 col-md-6 mb-4">
+                     <input type="text" class="form-control @error('email') is-invalid @enderror" placeholder="Email" name="email" value="{{ old('email') }}">
+                     @error('email')
+                        <span class="text-danger">{{ $message }}</span>
+                     @enderror
+                  </div>
+                  <div class="col-12 col-md-6 mb-4">
+                     <input type="text" class="form-control @error('contact') is-invalid @enderror" placeholder="Contact" name="contact" value="{{ old('contact') }}">
+                     @error('contact')
+                        <span class="text-danger">{{ $message }}</span>
+                     @enderror
+                  </div>
+                  <div class="col-12 col-md-6 mb-4">
+                     <input type="text" class="form-control @error('subject') is-invalid @enderror" placeholder="Subject" name="subject" value="{{ old('subject') }}">
+                     @error('subject')
+                        <span class="text-danger">{{ $message }}</span>
+                     @enderror
+                  </div>
+                  <div class="col-12 mb-4">
+                     <textarea class="form-control @error('message') is-invalid @enderror" placeholder="Message" name="message">{{ old('message') }}</textarea>
+                     @error('message')
+                        <span class="text-danger">{{ $message }}</span>
+                     @enderror
+                  </div>
+                  <div class="col-12 mb-4">
                      <input type="submit" value="Contact us" class="btn btn-info btn-lg btn-block">
-                  </li>
-               </ul>
-            </div>
+                  </div>
+               </div>
+            </form>
          </div>
          <div class="col-md-6">
             <div class="google-map">
                <?php echo $site_config->google_map ?>
             </div>
          </div>
+         
       </div>
    </div>
    <br><br>

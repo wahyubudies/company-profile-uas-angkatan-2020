@@ -30,6 +30,7 @@ Route::get('cetak/{par1}', 'App\Http\Controllers\Home@cetak');
 Route::get('javawebmedia', 'App\Http\Controllers\Home@javawebmedia');
 Route::get('aksi', 'App\Http\Controllers\Aksi@index');
 Route::get('aksi/status/{par1}', 'App\Http\Controllers\Aksi@status');
+Route::post('inbox', 'App\Http\Controllers\Home@inbox')->name('inbox');
 // Login
 Route::get('login', 'App\Http\Controllers\Login@index');
 Route::post('login/check', 'App\Http\Controllers\Login@check');
@@ -87,6 +88,7 @@ Route::post('admin/pemesanan/tambah_proses', 'App\Http\Controllers\Admin\Pemesan
 Route::post('admin/pemesanan/edit_proses', 'App\Http\Controllers\Admin\Pemesanan@edit_proses');
 // user
 Route::get('admin/user', 'App\Http\Controllers\Admin\User@index');
+Route::get('admin/user/{id}', 'App\Http\Controllers\Admin\User@show');
 Route::post('admin/user/tambah', 'App\Http\Controllers\Admin\User@tambah');
 Route::get('admin/user/edit/{par1}', 'App\Http\Controllers\Admin\User@edit');
 Route::post('admin/user/proses_edit', 'App\Http\Controllers\Admin\User@proses_edit');
@@ -272,5 +274,8 @@ Route::get('admin/download/delete/{par1}', 'App\Http\Controllers\Admin\Download@
 Route::post('admin/download/tambah_proses', 'App\Http\Controllers\Admin\Download@tambah_proses');
 Route::post('admin/download/edit_proses', 'App\Http\Controllers\Admin\Download@edit_proses');
 Route::post('admin/download/proses', 'App\Http\Controllers\Admin\Download@proses');
-
+// inbox
+Route::get('admin/inbox', 'App\Http\Controllers\Admin\Inbox@index')->name('inbox.index');
+Route::get('admin/inbox/{id}', 'App\Http\Controllers\Admin\Inbox@show')->name('inbox.show');
+Route::get('admin/inbox/delete/{id}', 'App\Http\Controllers\Admin\Inbox@delete')->name('inbox.delete');
 /* END BACK END*/

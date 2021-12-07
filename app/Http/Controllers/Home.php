@@ -8,6 +8,9 @@ use App\Models\Rekening_model;
 use App\Models\Berita_model;
 use App\Models\Staff_model;
 use App\Models\Download_model;
+use App\Models\Inbox;
+use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 use PDF;
 
 class Home extends Controller
@@ -43,7 +46,7 @@ class Home extends Controller
         $news   = new Berita_model();
         $berita = $news->home();
         // Staff
-        $kategori_staff  = DB::table('kategori_staff')->orderBy('urutan','ASC')->get();
+        $users  = User::select('nama', 'email', 'instagram', 'nim', 'job_desk', 'gambar')->get();
         $layanan = DB::table('berita')->where(array('jenis_berita' => 'Layanan','status_berita' => 'Publish'))->orderBy('urutan', 'ASC')->get();
 
         $data = array(  'title'     => 'Tentang '.$site_config->namaweb,
@@ -52,7 +55,7 @@ class Home extends Controller
                         'site_config'      => $site_config,
                         'berita'    => $berita,
                         'layanan'   => $layanan,
-                        'kategori_staff'     => $kategori_staff,
+                        'users'     => $users,
                         'content'   => 'home/aws'
                     );
         return view('layout/wrapper',$data);
@@ -69,7 +72,34 @@ class Home extends Controller
                         'site_config'      => $site_config,
                         'content'   => 'home/kontak'
                     );
+
         return view('layout/wrapper',$data);
     }
 
+    public function inbox(Request $request)
+    {
+        $rules = [
+            'full_name' => ['required'],
+            'email' => ['required'],
+            'contact' => ['required'],
+            'subject' => ['required'],
+            'message' => ['required']
+        ];
+
+        Validator::make($request->all(), $rules)->validate();    
+
+        try {
+            $data = new Inbox;
+            $data->full_name = $request->full_name;
+            $data->email = $request->email;
+            $data->contact = $request->contact;
+            $data->subject = $request->subject;
+            $data->message = $request->message;
+            $data->save();
+
+            return back()->with('message', 'Inbox successfully sent!');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
 }

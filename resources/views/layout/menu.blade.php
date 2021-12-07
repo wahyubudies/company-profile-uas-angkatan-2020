@@ -35,7 +35,7 @@ $nav_materi  = $myprofil->nav_materi();
          </ul>
       </li>
       
-      <li class="nav-item dropdown">
+      {{-- <li class="nav-item dropdown">
          <a class="nav-link dropdown-toggle" href="#"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Download <span class="pull-right"><i class="fas fa-caret-down"></i></span></a>
          <ul class="dropdown-menu" >            
             <?php foreach($nav_materi as $nav_materi) { ?>
@@ -43,7 +43,7 @@ $nav_materi  = $myprofil->nav_materi();
             <?php } ?>
             <li><a href="{{ asset('download') }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Lihat Semua Data</a></li>
          </ul>
-      </li>
+      </li> --}}
       <li class="nav-item"> <a class="nav-link" href="{{ asset('video') }}">Video</a> </li>
       <li class="nav-item"> <a class="nav-link" href="{{ asset('galeri') }}">Galeri</a> </li>
       <li class="nav-item"> <a class="nav-link" href="{{ asset('kontak') }}">Kontak</a> </li>

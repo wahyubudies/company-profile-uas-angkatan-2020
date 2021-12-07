@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
+use App\Models\User as ModelsUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -19,6 +20,18 @@ class User extends Controller
                         'content'   => 'admin/user/index'
                     );
         return view('admin/layout/wrapper',$data);
+    }
+    // Show
+    public function show($id)
+    {        
+    	if(Session()->get('username')=="") { return redirect('login')->with(['warning' => 'Mohon maaf, Anda belum login']);}
+		$user 	= ModelsUser::select('nama', 'email', 'username', 'akses_level', 'kode_rahasia', 'gambar', 'instagram', 'nim', 'job_desk')->where('id_user',$id)->first();
+
+		$data = array(  'title'     => 'Pengguna Website',
+						'user'      => $user,
+                        'content'   => 'admin/user/detail'
+                    );
+        return view('admin/layout/wrapper',$data);        
     }
 
     // Index

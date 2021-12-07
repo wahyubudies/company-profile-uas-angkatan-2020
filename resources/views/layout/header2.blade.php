@@ -37,7 +37,7 @@ $nav_profil           = $myprofil->nav_profil();
 
                 <li><a href="{{ asset('video') }}">Video Youtube</a></li>
                 <li><a href="{{ asset('galeri') }}">Galeri Gambar</a></li>
-                <li><a href="{{ asset('download') }}">Unduhan File</a></li>
+                {{-- <li><a href="{{ asset('download') }}">Unduhan File</a></li> --}}
               </ul>
             </li>
             <li><a href="{{ asset('kontak') }}">Kontak</a></li>

@@ -30,49 +30,12 @@
 <input type="hidden" name="pengalihan" value="<?php echo url()->full(); ?>">
 <?php $site   = DB::table('konfigurasi')->first(); ?>
 {{ csrf_field() }}
-<div class="row">
-  <div class="col-md-12">
-
-    <div class="input-group">
-      <button class="btn btn-default btn-sm" type="submit" name="hapus" onClick="check();" >
-          <i class="fa fa-trash"></i>
-        </button> 
-      <select name="id_kategori_agenda" class="form-control form-control-sm">
-        <?php 
-        $site           = DB::table('kategori_agenda')->get();
-        foreach($kategori_agenda as $kategori_agenda) { ?>
-          <option value="<?php echo $kategori_agenda->id_kategori_agenda ?>"><?php echo $kategori_agenda->nama_kategori_agenda ?></option>
-        <?php } ?>
-      </select>
-      <span class="input-group-btn" >
-        <button type="submit" class="btn btn-info btn-sm btn-flat" name="update">Update</button>
-        
-      
-
-        <button class="btn btn-warning btn-sm" type="submit" name="draft" onClick="check();" >
-          <i class="fa fa-times"></i> Draft
-        </button>
-
-        <button class="btn btn-primary btn-sm" type="submit" name="publish" onClick="check();" >
-          <i class="fa fa-check"></i> Publish
-        </button>
-      </span>
-    </div>
-  </div>
-    </div>
 <div class="table-responsive mailbox-messages">
 <table class="display table table-bordered" cellspacing="0" width="100%">
 <thead>
     <tr class="bg-dark">
-      <th width="5%">
-            <div class="mailbox-controls">
-                <!-- Check all button -->
-               <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="far fa-square"></i>
-                </button>
-            </div>
-      </th>
       <th width="5%">GAMBAR</th>
-      <th width="30%">JUDUL</th>
+      <th width="35%">JUDUL</th>
       <th width="25%">TEMPAT &amp; TANGGAL</th>
       <th width="15%">KATEGORI - JENIS</th>
       <th width="10%">STATUS</th>
@@ -85,12 +48,6 @@
 <?php $i=1; foreach($agenda as $agenda) { ?>
 
 <tr>
-    <td class="text-center">
-      <div class="icheck-primary">
-        <input type="checkbox" name="id_agenda[]" value="{{ $agenda->id_agenda }}" id="check<?php echo $i ?>">
-        <label for="check<?php echo $i ?>"></label>
-      </div>
-    </td>
     <td class="text-center">
     <?php if($agenda->gambar!="") { ?>
       <img src="{{ asset('assets/upload/image/thumbs/'.$agenda->gambar) }}" class="img-thumbnail img-size-50 mr-2" >

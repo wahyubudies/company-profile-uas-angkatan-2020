@@ -37,42 +37,39 @@ $bg2   = DB::table('heading')->where('halaman','Team')->orderBy('id_heading','DE
       <h1>{{ $bg2->judul_heading }}</h1>
    </div>
 </section>
-   <!--Causes Start-->
+<!--Causes Start-->
 <section class="wf100 p30 events justify-content-center">
    <div class="event-grid-2">
       <div class="container">
          <div class="row text-center  d-flex justify-content-center">
-            <?php foreach($kategori_staff as $kategori_staff) { 
-               $id_kategori_staff = $kategori_staff->id_kategori_staff;
-               $staff    = DB::table('staff')->where(array('status_staff'=>'Ya','id_kategori_staff'=>$id_kategori_staff))->orderBy('urutan','ASC')->get();
-               if($staff) {
-               ?>
+
             <div class="col-lg-12">
                <div class="about-text">
-             <h2>{{ $kategori_staff->nama_kategori_staff }}</h2>
-                  <p><?php echo nl2br($kategori_staff->keterangan) ?></p>
-                  <br><br>
+                  <h2 class="mb-2">ANGGOTA KELOMPOK</h2>
                </div>
             </div>
-            <?php foreach($staff as $staff) { ?>
-            <!--Blog Post Start-->
+            
+            @forelse($users as $user)
             <div class="col-lg-3 col-md-6">
                <div class="event-post">
-                  <div class="event-thumb"> <a href="#"><i class="fas fa-link"></i></a> <img src="{{ asset('assets/upload/staff/'.$staff->gambar) }}" alt="{{ $staff->nama_staff }}"></div>
+                  <div class="event-thumb"> 
+                     <a href="#"><i class="fas fa-link"></i></a> <img src="{{ asset('assets/upload/user/'.$user->gambar) }}" alt="{{ $user->nama }}">                     
+                  </div>
                   <div class="event-txt">
-                     <h6><a href="#">{{ $staff->nama_staff }}</a></h6>
-                     <p class="venue"><span>{{ $staff->jabatan }}</span></p>
+                     <h6>{{ $user->nama }}</h6>
+                     <p><strong>{{ $user->nim ?? '-' }}</strong></p>
+                     <p class="venue"><span class="fas fa-envelope"></span> &nbsp; <span>{{ $user->email ?? '-' }}</span></p>
+                     <p class="venue"><span class="fab fa-instagram"></span> &nbsp; <span>{{ $user->instagram ?? '-' }}</span></p>
                   </div>
                </div>
             </div>
-            <!--Blog Post End--> 
-            <?php } ?>
-            <?php }} ?>
+            @empty
+            <p>KOSONG</p>
+            @endforelse
       </div>
    </div>
 </section>
 <!--Causes End--> 
-
 <!--Service Area Start-->
  <section class="donation-join wf100 p80">
    <div class="container text-center">

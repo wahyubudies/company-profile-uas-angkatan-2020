@@ -11,6 +11,14 @@
 <form action="{{ asset('admin/user/proses_edit') }}" enctype="multipart/form-data" method="post" accept-charset="utf-8">
 {{ csrf_field() }}
 <input type="hidden" name="id_user" value="<?php echo $user->id_user ?>">
+
+<div class="form-group row">
+	<label class="col-sm-3 control-label text-right">NIM</label>
+	<div class="col-sm-9">
+		<input type="text" name="nim" class="form-control" placeholder="NIM" value="<?php echo $user->nim ?>" required>
+	</div>
+</div>
+
 <div class="form-group row">
 	<label class="col-sm-3 control-label text-right">Nama lengkap</label>
 	<div class="col-sm-9">
@@ -38,6 +46,20 @@
 		<input type="password" name="password" class="form-control" placeholder="Password" value="<?php echo $user->password ?>" required>
 	</div>
 </div>
+
+<div class="form-group row">
+	<label class="col-sm-3 control-label text-right">Job Desk</label>
+	<div class="col-sm-9">
+		<input type="text" name="job_desk" class="form-control" placeholder="Job Desk" value="<?php echo $user->job_desk ?>" required>
+	</div>
+</div>	
+
+<div class="form-group row">
+	<label class="col-sm-3 control-label text-right">Instagram</label>
+	<div class="col-sm-9">
+		<input type="text" name="instagram" class="form-control" placeholder="Instagram" value="<?php echo $user->instagram ?>" required>
+	</div>
+</div>	
 
 <div class="form-group row">
 	<label class="col-sm-3 control-label text-right">Level Hak Akses</label>
