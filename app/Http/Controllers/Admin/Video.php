@@ -59,46 +59,33 @@ class Video extends Controller
                             'gambar'    => 'file|image|mimes:jpeg,png,jpg|max:8024'
                             ]);
         // UPLOAD START
-        $image                  = $request->file('gambar');
-        if(!empty($image)) {
-            $filenamewithextension  = $request->file('gambar')->getClientOriginalName();
-            $filename               = pathinfo($filenamewithextension, PATHINFO_FILENAME);
-            $input['nama_file']     = Str::slug($filename, '-').'-'.time().'.'.$image->getClientOriginalExtension();
-            $destinationPath        = './assets/upload/image/thumbs/';
-            $img = Image::make($image->getRealPath(),array(
-                'width'     => 150,
-                'height'    => 150,
-                'grayscale' => false
-            ));
-            $img->save($destinationPath.'/'.$input['nama_file']);
-            $destinationPath = './assets/upload/image/';
-            $image->move($destinationPath, $input['nama_file']);
-            // END UPLOAD
-            // UPLOAD START       
-            DB::table('video')->insert([
-                'judul'         => $request->judul,
-                'posisi'        => $request->posisi,
-                'keterangan'    => $request->keterangan,
-                'video'         => $request->video,
-                'urutan'        => $request->urutan,
-                'id_user'       => Session()->get('id_user'),
-                'bahasa'        => $request->bahasa
-            ]);
-            return redirect('admin/video')->with(['sukses' => 'Data telah ditambah']);
-        }else{
-            // UPLOAD START       
-            DB::table('video')->insert([
-                'judul'         => $request->judul,
-                'posisi'        => $request->posisi,
-                'keterangan'    => $request->keterangan,
-                'video'         => $request->video,
-                'urutan'        => $request->urutan,
-                'id_user'       => Session()->get('id_user'),
-                'bahasa'        => $request->bahasa,
-                'gambar'        => $input['nama_file'],
-            ]);
-            return redirect('admin/video')->with(['sukses' => 'Data telah ditambah']);
-        }
+        $image                  = $request->file('gambar');        
+        $filenamewithextension  = $request->file('gambar')->getClientOriginalName();
+        $filename               = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+        $input['nama_file']     = Str::slug($filename, '-').'-'.time().'.'.$image->getClientOriginalExtension();
+        $destinationPath        = './assets/upload/image/thumbs/';
+                        
+        $img = Image::make($image->getRealPath(),array(
+            'width'     => 150,
+            'height'    => 150,
+            'grayscale' => false
+        ));
+        $img->save($destinationPath.'/'.$input['nama_file']);
+        $destinationPath = './assets/upload/image/';
+        $image->move($destinationPath, $input['nama_file']);
+        // END UPLOAD
+        // UPLOAD START       
+        DB::table('video')->insert([
+            'judul'         => $request->judul,
+            'posisi'        => $request->posisi,
+            'keterangan'    => $request->keterangan,
+            'video'         => $request->video,
+            'urutan'        => $request->urutan,
+            'id_user'       => Session()->get('id_user'),
+            'bahasa'        => $request->bahasa,     
+            'gambar'        => $input['nama_file'],
+        ]);
+        return redirect('admin/video')->with(['sukses' => 'Data telah ditambah']);
     }
 
     // edit

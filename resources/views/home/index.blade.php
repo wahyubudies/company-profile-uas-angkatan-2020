@@ -63,7 +63,7 @@
            <h3>Webinar</h3>
            <h2>{{ $video->judul }}</h2>
            <p> <?php echo strip_tags($video->keterangan) ?> </p>
-           <a class="aboutus" href="#">Lihat Detail</a>
+           <a class="aboutus" href="https://youtu.be/{{ $video->video }}" target="_blank">Lihat Detail</a>
          </div>
        </div>
      </div>
