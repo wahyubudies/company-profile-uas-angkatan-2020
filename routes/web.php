@@ -73,6 +73,7 @@ Route::get('proyek/cetak/{par1}', 'App\Http\Controllers\Proyek@cetak');
 
 // dasbor
 Route::get('admin/dasbor', 'App\Http\Controllers\Admin\Dasbor@index');
+Route::get('admin/dasbor/chart', 'App\Http\Controllers\Admin\Dasbor@chart');
 Route::get('admin/dasbor/konfigurasi', 'App\Http\Controllers\Admin\Dasbor@konfigurasi');
 // pemesanan
 Route::get('admin/pemesanan', 'App\Http\Controllers\Admin\Pemesanan@index');
