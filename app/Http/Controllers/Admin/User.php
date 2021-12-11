@@ -72,9 +72,13 @@ class User extends Controller
 					        'password' => 'required',
                             'email'    => 'required',
                             'gambar'   => 'file|image|mimes:jpeg,png,jpg|max:8024',
+                            'job_desk' => 'required',
+                            'instagram' => 'required',
+                            'nim' => 'required'
 					        ]);
         // UPLOAD START
         $image                  = $request->file('gambar');
+        // dd(!empty($image));
         if(!empty($image)) {
             $filenamewithextension  = $request->file('gambar')->getClientOriginalName();
             $filename               = pathinfo($filenamewithextension, PATHINFO_FILENAME);
@@ -95,7 +99,10 @@ class User extends Controller
                 'username'   	=> $request->username,
                 'password'      => sha1($request->password),
                 'akses_level'   => $request->akses_level,
-                'gambar'        => $input['nama_file']
+                'gambar'        => $input['nama_file'],
+                'job_desk'      => $request->job_desk,
+                'instagram'     => $request->instagram,
+                'nim'           => $request->nim
             ]);
         }else{
              DB::table('users')->insert([
@@ -103,7 +110,10 @@ class User extends Controller
                 'email'         => $request->email,
                 'username'      => $request->username,
                 'password'      => sha1($request->password),
-                'akses_level'   => $request->akses_level
+                'akses_level'   => $request->akses_level,                
+                'job_desk'      => $request->job_desk,
+                'instagram'     => $request->instagram,
+                'nim'           => $request->nim
             ]);
         }
         return redirect('admin/user')->with(['sukses' => 'Data telah ditambah']);
@@ -119,6 +129,9 @@ class User extends Controller
                             'password' => 'required',
                             'email'    => 'required',
                             'gambar'   => 'file|image|mimes:jpeg,png,jpg|max:8024',
+                            'job_desk' => 'required',
+                            'instagram' => 'required',
+                            'nim' => 'required'
 					        ]);
         // UPLOAD START
         $image                  = $request->file('gambar');
@@ -144,7 +157,10 @@ class User extends Controller
                 'username'      => $request->username,
                 'password'      => sha1($request->password),
                 'akses_level'   => $request->akses_level,
-                'gambar'        => $input['nama_file']
+                'gambar'        => $input['nama_file'],                
+                'job_desk'      => $request->job_desk,
+                'instagram'     => $request->instagram,
+                'nim'           => $request->nim
             ]);
         }else{
             $slug_user = Str::slug($request->nama, '-');
@@ -153,7 +169,10 @@ class User extends Controller
                 'email'         => $request->email,
                 'username'      => $request->username,
                 'password'      => sha1($request->password),
-                'akses_level'   => $request->akses_level
+                'akses_level'   => $request->akses_level,                
+                'job_desk'      => $request->job_desk,
+                'instagram'     => $request->instagram,
+                'nim'           => $request->nim
             ]);
         }
         return redirect('admin/user')->with(['sukses' => 'Data telah diupdate']);

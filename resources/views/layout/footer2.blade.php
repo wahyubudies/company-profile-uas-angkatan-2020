@@ -105,9 +105,6 @@ $site       = DB::table('konfigurasi')->first();
       <div class="copyright">
         &copy; Copyright <strong><span><?php echo $site->namaweb ?></span></strong>. All Rights Reserved
       </div>
-      <div class="credits">
-        Developed by <a href="https://javawebmedia.com/">Java Web Media</a>
-      </div>
     </div>
   </footer><!-- End Footer -->
   <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>

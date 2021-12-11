@@ -15,18 +15,15 @@
           <?php foreach($videos as $video) { ?>
            <div class="col-md-6 col-sm-6">
               <div class="blog-post">
-                  <div class="blog-thumb"> 
-                    <div class="embed-responsive embed-responsive-16by9">
-                      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ $video->video }}?rel=0" allowfullscreen></iframe>
-                    </div>
-                  </div>
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ $video->video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                   <hr>
                   <div class="post-txt">
-                         <h5><?php echo $video->judul ?></h5>
+                     <h5><?php echo $video->judul ?></h5>
                   </div>
               </div>
           </div>
           <?php } ?>
+          
 
           </div>
          <div class="gt-pagination">

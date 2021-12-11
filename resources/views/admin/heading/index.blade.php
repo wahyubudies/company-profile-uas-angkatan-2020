@@ -1,8 +1,10 @@
 <p>
 @include('admin/heading/tambah')
 </p>
-
-<table class="table table-bordered" id="example1">
+<div style=" float: right;" class="d-flex align-items-center">
+  Search : <input type="text" name="" id="" class="form-control ml-2 filter-input" style="max-width:200px;" data-column="2">
+</div>
+<table class="table table-bordered" id="example3">
 <thead>
 <tr>
     <th width="5%">NO</th>

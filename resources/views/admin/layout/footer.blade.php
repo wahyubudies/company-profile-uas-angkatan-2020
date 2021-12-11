@@ -377,6 +377,12 @@ CKEDITOR.replace( 'kontenku',
       "info": true,
       "autoWidth": false,
     });
+    var table = $("#example3").DataTable({});
+    $('.filter-input').keyup( function() {
+        table.column( $(this).data('column') )
+            .search( $(this).val() )
+            .draw()
+    } );
   });
 
   </script>

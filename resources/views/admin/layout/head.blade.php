@@ -174,6 +174,9 @@ $site                 = DB::table('konfigurasi')->first();
       position: absolute;
       width: 1px;
     }
+    #example3_filter {
+      display: none
+    }
   </style>
 
   

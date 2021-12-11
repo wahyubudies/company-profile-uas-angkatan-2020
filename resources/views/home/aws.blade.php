@@ -53,12 +53,13 @@ $bg2   = DB::table('heading')->where('halaman','Team')->orderBy('id_heading','DE
             <div class="col-lg-3 col-md-6">
                <div class="event-post">
                   <div class="event-thumb"> 
-                     <a href="#"><i class="fas fa-link"></i></a> <img src="{{ asset('assets/upload/user/'.$user->gambar) }}" alt="{{ $user->nama }}">                     
+                     <a href="#"><i class="fas fa-link"></i></a> <img src="{{ $user->gambar == null ? asset('assets/upload/user/user-default.png') : asset('assets/upload/user/'.$user->gambar) }}" alt="{{ $user->nama }}">                     
                   </div>
                   <div class="event-txt">
                      <h6>{{ $user->nama }}</h6>
                      <p><strong>{{ $user->nim ?? '-' }}</strong></p>
                      <p class="venue"><span class="fas fa-envelope"></span> &nbsp; <span>{{ $user->email ?? '-' }}</span></p>
+                     <p class="venue"><span class="fas fa-briefcase"></span> &nbsp; <span>{{ $user->job_desk ?? '-' }}</span></p>
                      <p class="venue"><span class="fab fa-instagram"></span> &nbsp; <span>{{ $user->instagram ?? '-' }}</span></p>
                   </div>
                </div>

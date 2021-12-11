@@ -318,7 +318,7 @@ class Berita extends Controller
             ]);
         }
         if($request->jenis_berita=="Berita") {
-            return redirect('admin/berita')->with(['sukses' => 'Data telah ditambah']);
+            return redirect('admin/berita')->with(['sukses' => 'Data telah diupdate']);
         }else{
             return redirect('admin/berita/jenis_berita/'.$request->jenis_berita)->with(['sukses' => 'Data telah ditambah']);
         }

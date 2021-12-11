@@ -1,4 +1,4 @@
-<a href="{{ route('inbox.index') }}" class="btn btn-primary btn-sm mb-4"><i class="fas fa-arrow-left"></i> Back</a>
+<a href="{{ route('user.index') }}" class="btn btn-primary btn-sm mb-4"><i class="fas fa-arrow-left"></i> Back</a>
 <table class="table table-striped">
     <tr>
         <td scope="row" >

@@ -40,7 +40,7 @@ class Home extends Controller
     }
 
     // Homepage
-    public function javawebmedia()
+    public function about()
     {
         $site_config   = DB::table('konfigurasi')->first();
         $news   = new Berita_model();
